@@ -1,0 +1,555 @@
+#!/bin/bash
+#
+# qdev - Development Environment Setup Helper
+# Quick project initialization and environment management
+#
+# Usage: qdev <command> [args]
+#   Commands:
+#     init <type>     Initialize a new project (python, node, go, rust)
+#     env             Manage development environment
+#     docker          Docker helpers
+#     db              Local database management
+#     port            Find/kill processes on ports
+
+set -e
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+success() { echo -e "${GREEN}✓${NC} $1"; }
+error() { echo -e "${RED}✗${NC} $1" >&2; }
+warn() { echo -e "${YELLOW}!${NC} $1"; }
+info() { echo -e "${CYAN}ℹ${NC} $1"; }
+
+# =============================================================================
+# Project Initialization
+# =============================================================================
+
+init_python() {
+    local name="${1:-.}"
+
+    if [[ "$name" != "." ]]; then
+        mkdir -p "$name"
+        cd "$name"
+        info "Created directory: $name"
+    fi
+
+    # Virtual environment
+    python3 -m venv .venv
+    success "Created virtual environment"
+
+    # Activate script hint
+    echo 'source .venv/bin/activate' > .envrc
+    info "Created .envrc (use 'direnv allow' to auto-activate)"
+
+    # Requirements files
+    cat > requirements.txt << 'EOF'
+# Production dependencies
+EOF
+
+    cat > requirements-dev.txt << 'EOF'
+# Development dependencies
+-r requirements.txt
+pytest
+pytest-cov
+black
+ruff
+mypy
+EOF
+
+    # pyproject.toml
+    cat > pyproject.toml << 'EOF'
+[project]
+name = "myproject"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src"
+EOF
+
+    # Directory structure
+    mkdir -p src tests
+    touch src/__init__.py tests/__init__.py
+
+    # Gitignore
+    cat > .gitignore << 'EOF'
+.venv/
+__pycache__/
+*.py[cod]
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+EOF
+
+    success "Python project initialized"
+    echo ""
+    info "Next steps:"
+    echo "    source .venv/bin/activate"
+    echo "    pip install -r requirements-dev.txt"
+}
+
+init_node() {
+    local name="${1:-.}"
+
+    if [[ "$name" != "." ]]; then
+        mkdir -p "$name"
+        cd "$name"
+        info "Created directory: $name"
+    fi
+
+    # package.json
+    npm init -y >/dev/null 2>&1
+
+    # Update package.json with better defaults
+    cat > package.json << 'EOF'
+{
+  "name": "myproject",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test",
+    "lint": "eslint src/",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {}
+}
+EOF
+
+    # Directory structure
+    mkdir -p src tests
+    echo 'console.log("Hello from Quantonium!");' > src/index.js
+
+    # Gitignore
+    cat > .gitignore << 'EOF'
+node_modules/
+dist/
+.env
+.env.local
+*.log
+coverage/
+.DS_Store
+EOF
+
+    # .nvmrc
+    node --version > .nvmrc
+
+    # Editor config
+    cat > .editorconfig << 'EOF'
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+EOF
+
+    success "Node.js project initialized"
+    echo ""
+    info "Next steps:"
+    echo "    npm install"
+    echo "    npm run dev"
+}
+
+init_go() {
+    local name="${1:-myproject}"
+
+    if [[ "$name" != "." ]]; then
+        mkdir -p "$name"
+        cd "$name"
+        info "Created directory: $name"
+    fi
+
+    # Initialize module
+    go mod init "$name"
+    success "Go module initialized"
+
+    # Directory structure
+    mkdir -p cmd/"$name" internal pkg
+
+    # Main file
+    cat > cmd/"$name"/main.go << 'EOF'
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello from Quantonium!")
+}
+EOF
+
+    # Gitignore
+    cat > .gitignore << 'EOF'
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+
+# Test binary
+*.test
+
+# Output of go coverage
+*.out
+
+# Dependency directories
+vendor/
+
+# IDE
+.idea/
+.vscode/
+EOF
+
+    # Makefile
+    cat > Makefile << EOF
+.PHONY: build run test clean
+
+build:
+	go build -o bin/$name ./cmd/$name
+
+run:
+	go run ./cmd/$name
+
+test:
+	go test -v ./...
+
+clean:
+	rm -rf bin/
+EOF
+
+    success "Go project initialized"
+    echo ""
+    info "Next steps:"
+    echo "    make run"
+}
+
+init_rust() {
+    local name="${1:-myproject}"
+
+    cargo new "$name"
+    cd "$name"
+
+    # Add common dependencies to Cargo.toml
+    cat >> Cargo.toml << 'EOF'
+
+[dev-dependencies]
+
+# Uncomment as needed:
+# serde = { version = "1", features = ["derive"] }
+# tokio = { version = "1", features = ["full"] }
+# anyhow = "1"
+# clap = { version = "4", features = ["derive"] }
+EOF
+
+    success "Rust project initialized"
+    echo ""
+    info "Next steps:"
+    echo "    cd $name"
+    echo "    cargo run"
+}
+
+cmd_init() {
+    local type="$1"
+    local name="$2"
+
+    case "$type" in
+        python|py)  init_python "$name" ;;
+        node|js)    init_node "$name" ;;
+        go)         init_go "$name" ;;
+        rust|rs)    init_rust "$name" ;;
+        "")
+            echo "Usage: qdev init <type> [name]"
+            echo ""
+            echo "Types:"
+            echo "  python, py   Python project with venv"
+            echo "  node, js     Node.js project"
+            echo "  go           Go module"
+            echo "  rust, rs     Rust project with Cargo"
+            ;;
+        *)
+            error "Unknown project type: $type"
+            exit 1
+            ;;
+    esac
+}
+
+# =============================================================================
+# Docker Helpers
+# =============================================================================
+
+cmd_docker() {
+    local subcmd="${1:-help}"
+    shift || true
+
+    case "$subcmd" in
+        clean)
+            info "Removing stopped containers..."
+            docker container prune -f
+
+            info "Removing unused images..."
+            docker image prune -f
+
+            info "Removing unused volumes..."
+            docker volume prune -f
+
+            info "Removing unused networks..."
+            docker network prune -f
+
+            success "Docker cleanup complete"
+            docker system df
+            ;;
+
+        nuke)
+            warn "This will remove ALL Docker data!"
+            read -rp "Are you sure? (yes/no): " confirm
+            if [[ "$confirm" == "yes" ]]; then
+                docker system prune -af --volumes
+                success "All Docker data removed"
+            else
+                info "Cancelled"
+            fi
+            ;;
+
+        stats)
+            docker stats --no-stream
+            ;;
+
+        shell)
+            local container="$1"
+            if [[ -z "$container" ]]; then
+                container=$(docker ps --format '{{.Names}}' | fzf --prompt="Select container: ")
+            fi
+            [[ -n "$container" ]] && docker exec -it "$container" /bin/sh -c "bash || sh"
+            ;;
+
+        logs)
+            local container="$1"
+            if [[ -z "$container" ]]; then
+                container=$(docker ps -a --format '{{.Names}}' | fzf --prompt="Select container: ")
+            fi
+            [[ -n "$container" ]] && docker logs -f "$container"
+            ;;
+
+        help|*)
+            echo "Usage: qdev docker <command>"
+            echo ""
+            echo "Commands:"
+            echo "  clean     Remove unused containers, images, volumes"
+            echo "  nuke      Remove ALL Docker data (dangerous!)"
+            echo "  stats     Show container resource usage"
+            echo "  shell     Open shell in container"
+            echo "  logs      Follow container logs"
+            ;;
+    esac
+}
+
+# =============================================================================
+# Port Management
+# =============================================================================
+
+cmd_port() {
+    local subcmd="${1:-list}"
+    local port="$2"
+
+    case "$subcmd" in
+        list|ls)
+            echo "Listening ports:"
+            ss -tuln | grep LISTEN | awk '{print $5}' | sort -t: -k2 -n | uniq
+            ;;
+
+        find)
+            if [[ -z "$port" ]]; then
+                error "Usage: qdev port find <port>"
+                exit 1
+            fi
+            info "Processes using port $port:"
+            ss -tulnp | grep ":$port " || info "No process found on port $port"
+            lsof -i :"$port" 2>/dev/null || true
+            ;;
+
+        kill)
+            if [[ -z "$port" ]]; then
+                error "Usage: qdev port kill <port>"
+                exit 1
+            fi
+            local pids
+            pids=$(lsof -t -i :"$port" 2>/dev/null)
+            if [[ -n "$pids" ]]; then
+                echo "$pids" | xargs kill -9
+                success "Killed processes on port $port"
+            else
+                info "No process found on port $port"
+            fi
+            ;;
+
+        *)
+            echo "Usage: qdev port <command> [port]"
+            echo ""
+            echo "Commands:"
+            echo "  list      List all listening ports"
+            echo "  find      Find process using a port"
+            echo "  kill      Kill process using a port"
+            ;;
+    esac
+}
+
+# =============================================================================
+# Local Database Management
+# =============================================================================
+
+cmd_db() {
+    local subcmd="${1:-help}"
+    shift || true
+
+    case "$subcmd" in
+        postgres|pg)
+            local action="${1:-start}"
+            local port="${2:-5432}"
+            local name="quantonium-postgres"
+
+            case "$action" in
+                start)
+                    docker run -d \
+                        --name "$name" \
+                        -e POSTGRES_PASSWORD=postgres \
+                        -p "$port":5432 \
+                        -v "$name-data":/var/lib/postgresql/data \
+                        postgres:16-alpine
+
+                    success "PostgreSQL started on port $port"
+                    info "Connection: postgresql://postgres:postgres@localhost:$port/postgres"
+                    ;;
+                stop)
+                    docker stop "$name" && docker rm "$name"
+                    success "PostgreSQL stopped"
+                    ;;
+                *)
+                    echo "Usage: qdev db postgres [start|stop] [port]"
+                    ;;
+            esac
+            ;;
+
+        redis)
+            local action="${1:-start}"
+            local port="${2:-6379}"
+            local name="quantonium-redis"
+
+            case "$action" in
+                start)
+                    docker run -d \
+                        --name "$name" \
+                        -p "$port":6379 \
+                        redis:alpine
+
+                    success "Redis started on port $port"
+                    ;;
+                stop)
+                    docker stop "$name" && docker rm "$name"
+                    success "Redis stopped"
+                    ;;
+                *)
+                    echo "Usage: qdev db redis [start|stop] [port]"
+                    ;;
+            esac
+            ;;
+
+        mysql)
+            local action="${1:-start}"
+            local port="${2:-3306}"
+            local name="quantonium-mysql"
+
+            case "$action" in
+                start)
+                    docker run -d \
+                        --name "$name" \
+                        -e MYSQL_ROOT_PASSWORD=root \
+                        -e MYSQL_DATABASE=dev \
+                        -p "$port":3306 \
+                        -v "$name-data":/var/lib/mysql \
+                        mysql:8
+
+                    success "MySQL started on port $port"
+                    info "Connection: mysql://root:root@localhost:$port/dev"
+                    ;;
+                stop)
+                    docker stop "$name" && docker rm "$name"
+                    success "MySQL stopped"
+                    ;;
+                *)
+                    echo "Usage: qdev db mysql [start|stop] [port]"
+                    ;;
+            esac
+            ;;
+
+        help|*)
+            echo "Usage: qdev db <database> [start|stop] [port]"
+            echo ""
+            echo "Databases:"
+            echo "  postgres, pg    PostgreSQL 16"
+            echo "  redis           Redis"
+            echo "  mysql           MySQL 8"
+            ;;
+    esac
+}
+
+# =============================================================================
+# Main
+# =============================================================================
+
+case "${1:-help}" in
+    init)   shift; cmd_init "$@" ;;
+    docker) shift; cmd_docker "$@" ;;
+    port)   shift; cmd_port "$@" ;;
+    db)     shift; cmd_db "$@" ;;
+    -h|--help|help)
+        echo "qdev - Development Environment Helper"
+        echo ""
+        echo "Usage: qdev <command> [args]"
+        echo ""
+        echo "Commands:"
+        echo "  init <type> [name]   Initialize project (python, node, go, rust)"
+        echo "  docker <cmd>         Docker helpers (clean, nuke, stats, shell, logs)"
+        echo "  port <cmd> [port]    Port management (list, find, kill)"
+        echo "  db <type> [action]   Local database management"
+        echo ""
+        echo "Examples:"
+        echo "  qdev init python myproject    Create Python project"
+        echo "  qdev docker clean             Clean unused Docker resources"
+        echo "  qdev port kill 3000           Kill process on port 3000"
+        echo "  qdev db postgres start        Start local PostgreSQL"
+        ;;
+    *)
+        error "Unknown command: $1"
+        echo "Run 'qdev --help' for usage"
+        exit 1
+        ;;
+esac

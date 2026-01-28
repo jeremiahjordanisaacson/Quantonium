@@ -1,0 +1,5 @@
+[Icon Theme]
+Name=Quantonium Cursors
+Comment=Modern cursor theme for Quantonium OS
+Inherits=Adwaita
+Example=left_ptr

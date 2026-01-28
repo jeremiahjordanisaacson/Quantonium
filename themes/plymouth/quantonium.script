@@ -1,0 +1,183 @@
+/**
+ * Quantonium Plymouth Theme
+ * A modern, elegant boot splash with quantum-inspired animations
+ */
+
+// ============================================================================
+// Configuration
+// ============================================================================
+
+// Colors (matching brand guidelines)
+background_color.red = 0.05;    // #0D0D14
+background_color.green = 0.05;
+background_color.blue = 0.08;
+
+// Screen setup
+Window.SetBackgroundTopColor(background_color.red, background_color.green, background_color.blue);
+Window.SetBackgroundBottomColor(0.05, 0.05, 0.07);
+
+// ============================================================================
+// Logo Setup
+// ============================================================================
+
+// Load logo image
+logo.image = Image("logo.png");
+logo.sprite = Sprite(logo.image);
+
+// Center the logo
+logo.x = Window.GetWidth() / 2 - logo.image.GetWidth() / 2;
+logo.y = Window.GetHeight() / 2 - logo.image.GetHeight() / 2 - 50;
+logo.sprite.SetPosition(logo.x, logo.y, 10);
+logo.sprite.SetOpacity(1);
+
+// ============================================================================
+// Progress Bar
+// ============================================================================
+
+// Progress bar configuration
+progress_bar.original_image = Image("progress-bar.png");
+progress_bar.sprite = Sprite();
+progress_bar.x = Window.GetWidth() / 2 - progress_bar.original_image.GetWidth() / 2;
+progress_bar.y = Window.GetHeight() / 2 + 80;
+progress_bar.sprite.SetPosition(progress_bar.x, progress_bar.y, 5);
+
+// Progress bar background
+progress_bg.image = Image("progress-bg.png");
+progress_bg.sprite = Sprite(progress_bg.image);
+progress_bg.sprite.SetPosition(progress_bar.x, progress_bar.y, 4);
+
+// ============================================================================
+// Text/Message Area
+// ============================================================================
+
+message_sprite = Sprite();
+message_sprite.SetPosition(Window.GetWidth() / 2, Window.GetHeight() - 100, 10);
+
+// ============================================================================
+// Orbital Animation Elements
+// ============================================================================
+
+// Create orbital particles
+NUM_PARTICLES = 8;
+particles = [];
+for (i = 0; i < NUM_PARTICLES; i++) {
+    particles[i].image = Image("particle.png");
+    particles[i].sprite = Sprite(particles[i].image);
+    particles[i].angle = i * (2 * 3.14159 / NUM_PARTICLES);
+    particles[i].radius = 80;
+    particles[i].speed = 0.02 + (i * 0.005);
+    particles[i].sprite.SetOpacity(0.6 + (i * 0.05));
+}
+
+// ============================================================================
+// Animation Functions
+// ============================================================================
+
+fun refresh_callback() {
+    // Update orbital particles
+    for (i = 0; i < NUM_PARTICLES; i++) {
+        particles[i].angle += particles[i].speed;
+        if (particles[i].angle > 2 * 3.14159) {
+            particles[i].angle -= 2 * 3.14159;
+        }
+
+        // Calculate position with elliptical orbit
+        particle_x = logo.x + logo.image.GetWidth() / 2 + Math.Sin(particles[i].angle) * particles[i].radius * 1.5;
+        particle_y = logo.y + logo.image.GetHeight() / 2 + Math.Cos(particles[i].angle) * particles[i].radius * 0.5;
+
+        particles[i].sprite.SetPosition(particle_x - particles[i].image.GetWidth() / 2,
+                                         particle_y - particles[i].image.GetHeight() / 2, 8);
+
+        // Fade based on position (back of orbit is dimmer)
+        opacity = 0.4 + (Math.Cos(particles[i].angle) + 1) * 0.3;
+        particles[i].sprite.SetOpacity(opacity);
+    }
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
+
+// ============================================================================
+// Progress/Boot Progress
+// ============================================================================
+
+fun boot_progress_callback(duration, progress) {
+    if (progress_bar.original_image) {
+        // Calculate progress bar width
+        new_width = progress_bar.original_image.GetWidth() * progress;
+        if (new_width > 1) {
+            progress_bar.image = progress_bar.original_image.Scale(new_width, progress_bar.original_image.GetHeight());
+            progress_bar.sprite.SetImage(progress_bar.image);
+        }
+    }
+}
+
+Plymouth.SetBootProgressFunction(boot_progress_callback);
+
+// ============================================================================
+// Message Display
+// ============================================================================
+
+fun message_callback(text) {
+    // Create text image
+    text_image = Image.Text(text, 0.9, 0.9, 0.94, "Inter");  // Starlight color
+    message_sprite.SetImage(text_image);
+    message_sprite.SetPosition(Window.GetWidth() / 2 - text_image.GetWidth() / 2,
+                               Window.GetHeight() - 100, 10);
+}
+
+Plymouth.SetMessageFunction(message_callback);
+
+// ============================================================================
+// Update Status
+// ============================================================================
+
+fun update_status_callback(status) {
+    // You can add visual feedback for different boot stages here
+}
+
+Plymouth.SetUpdateStatusFunction(update_status_callback);
+
+// ============================================================================
+// Display Normal/Password
+// ============================================================================
+
+fun display_normal_callback() {
+    // Normal boot display
+}
+
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+
+fun display_password_callback(prompt, bullets) {
+    // Password entry display
+    password_image = Image.Text(prompt, 0.9, 0.9, 0.94, "Inter");
+    message_sprite.SetImage(password_image);
+    message_sprite.SetPosition(Window.GetWidth() / 2 - password_image.GetWidth() / 2,
+                               Window.GetHeight() - 100, 10);
+
+    // Draw bullet points for password
+    bullet_string = "";
+    for (i = 0; i < bullets; i++) {
+        bullet_string += "●";
+    }
+
+    if (bullets > 0) {
+        bullet_image = Image.Text(bullet_string, 0, 0.85, 1, "Inter");  // Nebula cyan
+        // Position bullets below prompt
+    }
+}
+
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+
+// ============================================================================
+// Quit Function
+// ============================================================================
+
+fun quit_callback() {
+    // Fade out animation could go here
+    logo.sprite.SetOpacity(0);
+    for (i = 0; i < NUM_PARTICLES; i++) {
+        particles[i].sprite.SetOpacity(0);
+    }
+}
+
+Plymouth.SetQuitFunction(quit_callback);

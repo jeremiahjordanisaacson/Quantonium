@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Quantonium
+Description=Quantonium OS Boot Splash - A modern, elegant boot animation
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/quantonium
+ScriptFile=/usr/share/plymouth/themes/quantonium/quantonium.script

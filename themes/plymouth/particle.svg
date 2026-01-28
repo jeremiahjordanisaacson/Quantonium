@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="particleGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="particleGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <circle cx="6" cy="6" r="4" fill="url(#particleGradient)" filter="url(#particleGlow)"/>
+  <circle cx="6" cy="6" r="2" fill="#FFFFFF" opacity="0.8"/>
+</svg>

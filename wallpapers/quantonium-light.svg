@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3840" height="2160" viewBox="0 0 3840 2160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Light Background Gradient -->
+    <linearGradient id="bgGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F5FA"/>
+      <stop offset="30%" stop-color="#E8E8F0"/>
+      <stop offset="60%" stop-color="#F0F0F8"/>
+      <stop offset="100%" stop-color="#E8E8F0"/>
+    </linearGradient>
+
+    <!-- Soft purple glow -->
+    <radialGradient id="purpleGlowLight" cx="25%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#6B4C9A" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#6B4C9A" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft cyan glow -->
+    <radialGradient id="cyanGlowLight" cx="75%" cy="65%" r="40%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.12"/>
+      <stop offset="50%" stop-color="#00D9FF" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#00D9FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft pink accent -->
+    <radialGradient id="pinkGlowLight" cx="90%" cy="15%" r="30%">
+      <stop offset="0%" stop-color="#FF6B9D" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#FF6B9D" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Nebula blur -->
+    <filter id="nebulaBlurLight">
+      <feGaussianBlur stdDeviation="100"/>
+    </filter>
+
+    <!-- Subtle orbital gradient -->
+    <linearGradient id="orbitalGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#6B4C9A" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF6B9D" stop-opacity="0.1"/>
+    </linearGradient>
+
+    <!-- Geometric pattern -->
+    <pattern id="dotPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="1" fill="#6B4C9A" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="3840" height="2160" fill="url(#bgGradientLight)"/>
+
+  <!-- Subtle dot pattern -->
+  <rect width="3840" height="2160" fill="url(#dotPattern)"/>
+
+  <!-- Soft nebula shapes -->
+  <ellipse cx="1000" cy="700" rx="700" ry="450" fill="#6B4C9A" opacity="0.06" filter="url(#nebulaBlurLight)"/>
+  <ellipse cx="2900" cy="1500" rx="550" ry="380" fill="#00D9FF" opacity="0.04" filter="url(#nebulaBlurLight)"/>
+  <ellipse cx="3300" cy="350" rx="450" ry="280" fill="#FF6B9D" opacity="0.05" filter="url(#nebulaBlurLight)"/>
+  <ellipse cx="500" cy="1700" rx="380" ry="320" fill="#6B4C9A" opacity="0.05" filter="url(#nebulaBlurLight)"/>
+
+  <!-- Gradient overlays -->
+  <rect width="3840" height="2160" fill="url(#purpleGlowLight)"/>
+  <rect width="3840" height="2160" fill="url(#cyanGlowLight)"/>
+  <rect width="3840" height="2160" fill="url(#pinkGlowLight)"/>
+
+  <!-- Decorative orbital rings -->
+  <ellipse cx="1920" cy="1080" rx="1300" ry="280" fill="none" stroke="url(#orbitalGradientLight)" stroke-width="1" opacity="0.2" transform="rotate(-12 1920 1080)"/>
+  <ellipse cx="1920" cy="1080" rx="1500" ry="320" fill="none" stroke="url(#orbitalGradientLight)" stroke-width="0.5" opacity="0.12" transform="rotate(8 1920 1080)"/>
+  <ellipse cx="1920" cy="1080" rx="1100" ry="230" fill="none" stroke="url(#orbitalGradientLight)" stroke-width="1.5" opacity="0.08" transform="rotate(-3 1920 1080)"/>
+
+  <!-- Geometric accent shapes -->
+  <g opacity="0.03">
+    <!-- Large hexagonal shapes -->
+    <polygon points="300,400 450,320 600,400 600,560 450,640 300,560" fill="none" stroke="#6B4C9A" stroke-width="2"/>
+    <polygon points="3300,1600 3450,1520 3600,1600 3600,1760 3450,1840 3300,1760" fill="none" stroke="#00D9FF" stroke-width="2"/>
+    <polygon points="1800,200 1950,120 2100,200 2100,360 1950,440 1800,360" fill="none" stroke="#FF6B9D" stroke-width="2"/>
+  </g>
+
+  <!-- Subtle floating circles -->
+  <g opacity="0.05">
+    <circle cx="500" cy="300" r="80" fill="none" stroke="#6B4C9A" stroke-width="1"/>
+    <circle cx="3400" cy="800" r="60" fill="none" stroke="#00D9FF" stroke-width="1"/>
+    <circle cx="200" cy="1200" r="100" fill="none" stroke="#FF6B9D" stroke-width="1"/>
+    <circle cx="3600" cy="1800" r="70" fill="none" stroke="#6B4C9A" stroke-width="1"/>
+    <circle cx="1200" cy="1900" r="50" fill="none" stroke="#00D9FF" stroke-width="1"/>
+    <circle cx="2600" cy="300" r="90" fill="none" stroke="#FF6B9D" stroke-width="1"/>
+  </g>
+
+  <!-- Small accent dots -->
+  <g fill="#6B4C9A">
+    <circle cx="400" cy="500" r="3" opacity="0.15"/>
+    <circle cx="800" cy="200" r="2.5" opacity="0.12"/>
+    <circle cx="1500" cy="400" r="3" opacity="0.1"/>
+    <circle cx="2200" cy="250" r="2" opacity="0.15"/>
+    <circle cx="2800" cy="500" r="3" opacity="0.12"/>
+    <circle cx="3400" cy="300" r="2.5" opacity="0.1"/>
+    <circle cx="600" cy="1000" r="2" opacity="0.15"/>
+    <circle cx="1100" cy="800" r="3" opacity="0.12"/>
+    <circle cx="1800" cy="600" r="2.5" opacity="0.1"/>
+    <circle cx="2500" cy="900" r="2" opacity="0.15"/>
+    <circle cx="3100" cy="700" r="3" opacity="0.12"/>
+    <circle cx="3600" cy="1000" r="2.5" opacity="0.1"/>
+  </g>
+
+  <g fill="#00D9FF">
+    <circle cx="300" cy="1400" r="2.5" opacity="0.12"/>
+    <circle cx="900" cy="1600" r="3" opacity="0.1"/>
+    <circle cx="1400" cy="1200" r="2" opacity="0.15"/>
+    <circle cx="2000" cy="1500" r="3" opacity="0.12"/>
+    <circle cx="2700" cy="1300" r="2.5" opacity="0.1"/>
+    <circle cx="3300" cy="1600" r="2" opacity="0.15"/>
+    <circle cx="500" cy="1900" r="3" opacity="0.12"/>
+    <circle cx="1200" cy="2000" r="2.5" opacity="0.1"/>
+    <circle cx="1900" cy="1800" r="2" opacity="0.15"/>
+    <circle cx="2600" cy="2050" r="3" opacity="0.12"/>
+    <circle cx="3200" cy="1950" r="2.5" opacity="0.1"/>
+    <circle cx="3700" cy="1400" r="2" opacity="0.15"/>
+  </g>
+
+  <!-- Central subtle logo watermark -->
+  <g transform="translate(1720, 880)" opacity="0.025">
+    <circle cx="200" cy="200" r="160" fill="none" stroke="#1A1A2E" stroke-width="20"/>
+    <ellipse cx="200" cy="200" rx="220" ry="80" fill="none" stroke="#1A1A2E" stroke-width="8" transform="rotate(-30 200 200)"/>
+    <circle cx="200" cy="200" r="50" fill="#1A1A2E"/>
+    <path d="M280 280 L360 360" stroke="#1A1A2E" stroke-width="20" stroke-linecap="round"/>
+  </g>
+
+  <!-- Very subtle edge vignette -->
+  <defs>
+    <radialGradient id="vignetteLight" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0.05"/>
+    </radialGradient>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#vignetteLight)"/>
+</svg>

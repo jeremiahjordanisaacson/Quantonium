@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>Quantonium Default</name>
+    <filename>/usr/share/backgrounds/quantonium/quantonium-default.svg</filename>
+    <filename-dark>/usr/share/backgrounds/quantonium/quantonium-default.svg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#1A1A2E</pcolor>
+    <scolor>#0D0D14</scolor>
+  </wallpaper>
+
+  <wallpaper deleted="false">
+    <name>Quantonium Light</name>
+    <filename>/usr/share/backgrounds/quantonium/quantonium-light.svg</filename>
+    <filename-dark>/usr/share/backgrounds/quantonium/quantonium-default.svg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#E8E8F0</pcolor>
+    <scolor>#F5F5FA</scolor>
+  </wallpaper>
+
+  <wallpaper deleted="false">
+    <name>Quantonium Nebula</name>
+    <filename>/usr/share/backgrounds/quantonium/quantonium-nebula.svg</filename>
+    <filename-dark>/usr/share/backgrounds/quantonium/quantonium-nebula.svg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#0D0D14</pcolor>
+    <scolor>#1A1A2E</scolor>
+  </wallpaper>
+
+  <wallpaper deleted="false">
+    <name>Quantonium Gradient</name>
+    <filename>/usr/share/backgrounds/quantonium/quantonium-gradient.svg</filename>
+    <filename-dark>/usr/share/backgrounds/quantonium/quantonium-gradient.svg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#6B4C9A</pcolor>
+    <scolor>#00D9FF</scolor>
+  </wallpaper>
+</wallpapers>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="400" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D0D14"/>
+      <stop offset="50%" stop-color="#1A1A2E"/>
+      <stop offset="100%" stop-color="#16161F"/>
+    </linearGradient>
+
+    <!-- Primary Gradient -->
+    <linearGradient id="quantumGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+
+    <!-- Orbital Gradient -->
+    <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#FF6B9D"/>
+    </linearGradient>
+
+    <!-- Text Gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E8E8F0"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Large Glow -->
+    <filter id="bigGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="20" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Star Pattern -->
+    <pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="20" r="1" fill="#FFFFFF" opacity="0.3"/>
+      <circle cx="50" cy="10" r="0.5" fill="#FFFFFF" opacity="0.5"/>
+      <circle cx="80" cy="40" r="1" fill="#FFFFFF" opacity="0.2"/>
+      <circle cx="30" cy="70" r="0.5" fill="#FFFFFF" opacity="0.4"/>
+      <circle cx="90" cy="80" r="1" fill="#FFFFFF" opacity="0.3"/>
+      <circle cx="60" cy="60" r="0.5" fill="#00D9FF" opacity="0.4"/>
+      <circle cx="20" cy="90" r="0.5" fill="#FF6B9D" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="400" fill="url(#bgGradient)"/>
+
+  <!-- Star field -->
+  <rect width="1200" height="400" fill="url(#stars)"/>
+
+  <!-- Decorative orbital lines -->
+  <ellipse cx="200" cy="200" rx="600" ry="150" fill="none" stroke="#6B4C9A" stroke-width="1" opacity="0.1"/>
+  <ellipse cx="200" cy="200" rx="700" ry="180" fill="none" stroke="#00D9FF" stroke-width="1" opacity="0.08"/>
+  <ellipse cx="1000" cy="200" rx="500" ry="120" fill="none" stroke="#FF6B9D" stroke-width="1" opacity="0.08"/>
+
+  <!-- Ambient glow spots -->
+  <circle cx="100" cy="100" r="100" fill="#6B4C9A" opacity="0.15" filter="url(#bigGlow)"/>
+  <circle cx="1100" cy="300" r="150" fill="#00D9FF" opacity="0.1" filter="url(#bigGlow)"/>
+  <circle cx="600" cy="350" r="100" fill="#FF6B9D" opacity="0.08" filter="url(#bigGlow)"/>
+
+  <!-- Logomark -->
+  <g transform="translate(200, 80)">
+    <!-- Outer Glow -->
+    <circle cx="120" cy="120" r="100" fill="none" stroke="#6B4C9A" stroke-width="40" opacity="0.1"/>
+
+    <!-- Main Q Circle -->
+    <circle cx="120" cy="120" r="80" fill="none" stroke="url(#quantumGlow)" stroke-width="20" stroke-linecap="round"/>
+
+    <!-- Orbital Rings -->
+    <ellipse cx="120" cy="120" rx="110" ry="40" fill="none" stroke="url(#orbitalGradient)" stroke-width="5" stroke-linecap="round" transform="rotate(-30 120 120)" filter="url(#glow)" opacity="0.9"/>
+    <ellipse cx="120" cy="120" rx="95" ry="32" fill="none" stroke="url(#orbitalGradient)" stroke-width="3" stroke-linecap="round" transform="rotate(45 120 120)" opacity="0.5"/>
+
+    <!-- Core -->
+    <circle cx="120" cy="120" r="28" fill="url(#quantumGlow)"/>
+    <circle cx="120" cy="120" r="16" fill="#00D9FF" opacity="0.8"/>
+    <circle cx="120" cy="120" r="8" fill="#FFFFFF"/>
+
+    <!-- Q Tail -->
+    <path d="M170 170 L220 220" stroke="url(#quantumGlow)" stroke-width="20" stroke-linecap="round" filter="url(#glow)"/>
+
+    <!-- Particles -->
+    <circle cx="200" cy="50" r="6" fill="#00D9FF" filter="url(#glow)"/>
+    <circle cx="40" cy="160" r="5" fill="#FF6B9D" filter="url(#glow)"/>
+    <circle cx="210" cy="150" r="4" fill="#00D9FF" opacity="0.7"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="500" y="180" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="80" font-weight="700" fill="url(#textGradient)" letter-spacing="-2">
+    Quantonium
+  </text>
+
+  <!-- Tagline -->
+  <text x="502" y="230" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" fill="#A0A0B8" letter-spacing="4">
+    THE FUTURE OF DESKTOP LINUX
+  </text>
+
+  <!-- Accent line under tagline -->
+  <line x1="500" y1="250" x2="780" y2="250" stroke="url(#orbitalGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Version badge -->
+  <g transform="translate(500, 280)">
+    <rect x="0" y="0" width="100" height="30" rx="15" fill="#6B4C9A" opacity="0.3"/>
+    <rect x="0" y="0" width="100" height="30" rx="15" fill="none" stroke="#6B4C9A" stroke-width="1"/>
+    <text x="50" y="20" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" fill="#E8E8F0" text-anchor="middle">v1.0 LTS</text>
+  </g>
+
+  <!-- Based on Ubuntu badge -->
+  <g transform="translate(620, 280)">
+    <rect x="0" y="0" width="140" height="30" rx="15" fill="#E95420" opacity="0.2"/>
+    <rect x="0" y="0" width="140" height="30" rx="15" fill="none" stroke="#E95420" stroke-width="1" opacity="0.6"/>
+    <text x="70" y="20" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#E8E8F0" text-anchor="middle">Based on Ubuntu</text>
+  </g>
+</svg>

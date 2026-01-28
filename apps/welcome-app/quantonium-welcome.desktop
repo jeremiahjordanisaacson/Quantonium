@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Quantonium Welcome
+GenericName=Welcome
+Comment=Welcome to Quantonium OS
+Exec=quantonium-welcome
+Icon=quantonium-logo
+Terminal=false
+Categories=Utility;
+Keywords=welcome;first-run;tour;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true
+X-GNOME-UsesNotifications=false

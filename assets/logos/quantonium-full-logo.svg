@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="150" viewBox="0 0 600 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Primary Gradient -->
+    <linearGradient id="quantumGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+
+    <!-- Orbital Gradient -->
+    <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#FF6B9D"/>
+    </linearGradient>
+
+    <!-- Text Gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6B4C9A"/>
+      <stop offset="50%" stop-color="#8B6CB8"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Core Glow -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Logomark - Scaled down version -->
+  <g transform="translate(10, 10)">
+    <!-- Glow -->
+    <circle cx="65" cy="65" r="50" fill="url(#coreGlow)" opacity="0.4"/>
+
+    <!-- Main Q Circle -->
+    <circle cx="65" cy="65" r="42" fill="none" stroke="url(#quantumGlow)" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Orbital Ring -->
+    <ellipse cx="65" cy="65" rx="55" ry="20" fill="none" stroke="url(#orbitalGradient)" stroke-width="3" stroke-linecap="round" transform="rotate(-30 65 65)" filter="url(#glow)" opacity="0.9"/>
+
+    <!-- Core -->
+    <circle cx="65" cy="65" r="14" fill="url(#quantumGlow)"/>
+    <circle cx="65" cy="65" r="8" fill="#00D9FF" opacity="0.8"/>
+    <circle cx="65" cy="65" r="4" fill="#FFFFFF"/>
+
+    <!-- Q Tail -->
+    <path d="M95 95 L118 118" stroke="url(#quantumGlow)" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Particles -->
+    <circle cx="108" cy="30" r="4" fill="#00D9FF" filter="url(#glow)"/>
+    <circle cx="22" cy="85" r="3" fill="#FF6B9D" filter="url(#glow)"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="155" y="98" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" fill="url(#textGradient)" letter-spacing="-1">
+    Quantonium
+  </text>
+
+  <!-- Subtle underline accent -->
+  <line x1="155" y1="112" x2="320" y2="112" stroke="url(#orbitalGradient)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

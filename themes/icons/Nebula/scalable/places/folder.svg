@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="folderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B6CB8"/>
+      <stop offset="100%" stop-color="#6B4C9A"/>
+    </linearGradient>
+    <linearGradient id="folderFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7B5CA8"/>
+      <stop offset="100%" stop-color="#5B3C8A"/>
+    </linearGradient>
+    <linearGradient id="folderHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Back of folder -->
+  <path d="M6 16C6 13.7909 7.79086 12 10 12H24L30 18H54C56.2091 18 58 19.7909 58 22V52C58 54.2091 56.2091 56 54 56H10C7.79086 56 6 54.2091 6 52V16Z" fill="url(#folderGradient)"/>
+
+  <!-- Tab highlight -->
+  <path d="M6 16C6 13.7909 7.79086 12 10 12H24L30 18H54C56.2091 18 58 19.7909 58 22V24H6V16Z" fill="url(#folderHighlight)"/>
+
+  <!-- Front of folder -->
+  <path d="M4 26C4 23.7909 5.79086 22 8 22H56C58.2091 22 60 23.7909 60 26V54C60 56.2091 58.2091 58 56 58H8C5.79086 58 4 56.2091 4 54V26Z" fill="url(#folderFront)"/>
+
+  <!-- Front highlight -->
+  <path d="M4 26C4 23.7909 5.79086 22 8 22H56C58.2091 22 60 23.7909 60 26V30H4V26Z" fill="url(#folderHighlight)"/>
+
+  <!-- Subtle inner shadow -->
+  <path d="M8 30H56V54C56 55.1046 55.1046 56 54 56H10C8.89543 56 8 55.1046 8 54V30Z" fill="rgba(0,0,0,0.1)"/>
+
+  <!-- Bottom edge highlight -->
+  <path d="M8 54C8 55.1046 8.89543 56 10 56H54C55.1046 56 56 55.1046 56 54V53H8V54Z" fill="rgba(255,255,255,0.05)"/>
+</svg>

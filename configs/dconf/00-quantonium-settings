@@ -1,0 +1,393 @@
+# Quantonium OS Default Settings
+# These settings configure GNOME to behave like Ubuntu's desktop
+
+# =============================================================================
+# Desktop Interface Settings
+# =============================================================================
+
+[org/gnome/desktop/interface]
+# Theme settings
+gtk-theme='Quantonium-Dark'
+icon-theme='Adwaita'
+cursor-theme='Adwaita'
+font-name='Inter 11'
+document-font-name='Inter 11'
+monospace-font-name='JetBrains Mono 10'
+
+# Color scheme (prefer dark)
+color-scheme='prefer-dark'
+
+# Clock settings
+clock-show-weekday=true
+clock-show-date=true
+clock-show-seconds=false
+clock-format='12h'
+
+# Misc interface settings
+enable-hot-corners=false
+show-battery-percentage=true
+toolkit-accessibility=false
+
+# Animation settings
+enable-animations=true
+
+# =============================================================================
+# Window Manager Settings
+# =============================================================================
+
+[org/gnome/desktop/wm/preferences]
+# Button layout (Ubuntu style - close, minimize, maximize on right)
+button-layout=':minimize,maximize,close'
+
+# Fonts
+titlebar-font='Inter Bold 11'
+
+# Focus behavior
+focus-mode='click'
+auto-raise=false
+
+# Workspace settings
+num-workspaces=4
+
+[org/gnome/mutter]
+# Center new windows
+center-new-windows=true
+
+# Edge tiling
+edge-tiling=true
+
+# Dynamic workspaces (Ubuntu style)
+dynamic-workspaces=true
+
+# Workspaces span displays
+workspaces-only-on-primary=true
+
+# =============================================================================
+# Shell Settings
+# =============================================================================
+
+[org/gnome/shell]
+# Enabled extensions (Ubuntu-style experience)
+enabled-extensions=['ubuntu-dock@ubuntu.com', 'ding@rastersoft.com', 'ubuntu-appindicators@ubuntu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com']
+
+# Favorite apps in dock
+favorite-apps=['org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Software.desktop', 'org.gnome.Settings.desktop', 'quantonium-welcome.desktop']
+
+# Welcome dialog disabled after first run
+welcome-dialog-last-shown-version='99.0'
+
+[org/gnome/shell/extensions/user-theme]
+name='Quantonium-Dark'
+
+# =============================================================================
+# Dash to Dock / Ubuntu Dock Settings
+# =============================================================================
+
+[org/gnome/shell/extensions/dash-to-dock]
+# Dock position (left like Ubuntu)
+dock-position='LEFT'
+
+# Dock behavior
+dock-fixed=true
+extend-height=true
+intellihide=false
+
+# Icon size
+dash-max-icon-size=48
+
+# Appearance
+transparency-mode='FIXED'
+background-opacity=0.8
+background-color='#0D0D14'
+custom-background-color=true
+
+# Running indicators
+running-indicator-style='DOTS'
+running-indicator-dominant-color=true
+
+# Click behavior
+click-action='minimize-or-previews'
+scroll-action='cycle-windows'
+
+# Show apps button
+show-apps-at-top=false
+show-show-apps-button=true
+
+# Multi-monitor
+multi-monitor=true
+preferred-monitor=0
+
+# Animation
+animation-time=0.2
+show-delay=0.0
+hide-delay=0.0
+
+# =============================================================================
+# Desktop Icons Settings
+# =============================================================================
+
+[org/gnome/shell/extensions/ding]
+# Show home folder
+show-home=true
+
+# Show trash
+show-trash=true
+
+# Icon size
+icon-size='standard'
+
+# Start corner
+start-corner='top-left'
+
+# Show volumes
+show-volumes=true
+show-network-volumes=true
+
+# =============================================================================
+# AppIndicators Settings
+# =============================================================================
+
+[org/gnome/shell/extensions/appindicator]
+# Legacy tray icons
+legacy-tray-enabled=true
+
+# Icon saturation
+icon-saturation=1.0
+
+# Tray position
+tray-pos='right'
+
+# =============================================================================
+# Background Settings
+# =============================================================================
+
+[org/gnome/desktop/background]
+# Default wallpaper
+picture-uri='file:///usr/share/backgrounds/quantonium/quantonium-default.svg'
+picture-uri-dark='file:///usr/share/backgrounds/quantonium/quantonium-default.svg'
+picture-options='zoom'
+primary-color='#1A1A2E'
+secondary-color='#0D0D14'
+
+[org/gnome/desktop/screensaver]
+# Lock screen wallpaper
+picture-uri='file:///usr/share/backgrounds/quantonium/quantonium-default.svg'
+picture-options='zoom'
+primary-color='#1A1A2E'
+lock-delay=uint32 300
+
+# =============================================================================
+# Sound Settings
+# =============================================================================
+
+[org/gnome/desktop/sound]
+# Sound theme
+theme-name='quantonium'
+event-sounds=true
+input-feedback-sounds=false
+allow-volume-above-100-percent=true
+
+# =============================================================================
+# Power Settings
+# =============================================================================
+
+[org/gnome/settings-daemon/plugins/power]
+# Sleep settings
+sleep-inactive-ac-timeout=1800
+sleep-inactive-ac-type='suspend'
+sleep-inactive-battery-timeout=900
+sleep-inactive-battery-type='suspend'
+
+# Power button action
+power-button-action='interactive'
+
+# Battery settings
+percentage-action=10
+percentage-low=20
+percentage-critical=5
+
+# =============================================================================
+# Privacy Settings
+# =============================================================================
+
+[org/gnome/desktop/privacy]
+# No telemetry
+report-technical-problems=false
+send-software-usage-stats=false
+
+# History settings
+remember-recent-files=true
+recent-files-max-age=30
+
+# Screen lock
+disable-lock-screen=false
+
+[org/gnome/desktop/notifications]
+show-banners=true
+show-in-lock-screen=false
+
+# =============================================================================
+# Input Settings
+# =============================================================================
+
+[org/gnome/desktop/peripherals/touchpad]
+# Natural scrolling
+natural-scroll=true
+
+# Tap to click
+tap-to-click=true
+
+# Two finger scrolling
+two-finger-scrolling-enabled=true
+
+[org/gnome/desktop/peripherals/mouse]
+# Natural scrolling for mouse
+natural-scroll=false
+
+# Acceleration profile
+accel-profile='adaptive'
+
+# =============================================================================
+# Keyboard Shortcuts
+# =============================================================================
+
+[org/gnome/settings-daemon/plugins/media-keys]
+# Custom shortcuts
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+
+# Screenshot shortcuts (Ubuntu style)
+screenshot=['Print']
+screenshot-clip=['<Control>Print']
+area-screenshot=['<Shift>Print']
+area-screenshot-clip=['<Control><Shift>Print']
+window-screenshot=['<Alt>Print']
+window-screenshot-clip=['<Control><Alt>Print']
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0]
+# Terminal shortcut (Ctrl+Alt+T like Ubuntu)
+binding='<Control><Alt>t'
+command='gnome-terminal'
+name='Terminal'
+
+[org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1]
+# File manager shortcut
+binding='<Super>e'
+command='nautilus'
+name='Files'
+
+[org/gnome/desktop/wm/keybindings]
+# Window switching (Alt+Tab)
+switch-applications=['<Alt>Tab']
+switch-applications-backward=['<Shift><Alt>Tab']
+switch-windows=['<Super>Tab']
+switch-windows-backward=['<Shift><Super>Tab']
+
+# Workspace switching
+switch-to-workspace-1=['<Super>1']
+switch-to-workspace-2=['<Super>2']
+switch-to-workspace-3=['<Super>3']
+switch-to-workspace-4=['<Super>4']
+move-to-workspace-1=['<Super><Shift>1']
+move-to-workspace-2=['<Super><Shift>2']
+move-to-workspace-3=['<Super><Shift>3']
+move-to-workspace-4=['<Super><Shift>4']
+
+# Window management
+close=['<Alt>F4']
+minimize=['<Super>h']
+maximize=['<Super>Up']
+unmaximize=['<Super>Down']
+toggle-fullscreen=['F11']
+
+# =============================================================================
+# File Manager (Nautilus) Settings
+# =============================================================================
+
+[org/gnome/nautilus/preferences]
+# Default view
+default-folder-viewer='icon-view'
+
+# Show hidden files
+show-hidden-files=false
+
+# Sort order
+default-sort-column='name'
+default-sort-order='ascending'
+
+# Recursive search
+recursive-search='local-only'
+
+# Click policy
+click-policy='double'
+
+[org/gnome/nautilus/icon-view]
+# Icon size
+default-zoom-level='medium'
+
+[org/gnome/nautilus/list-view]
+# List view columns
+default-column-order=['name', 'size', 'type', 'date_modified']
+default-visible-columns=['name', 'size', 'date_modified']
+default-zoom-level='small'
+use-tree-view=true
+
+# =============================================================================
+# Terminal Settings
+# =============================================================================
+
+[org/gnome/terminal/legacy]
+theme-variant='dark'
+default-show-menubar=false
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+visible-name='Quantonium'
+use-system-font=false
+font='JetBrains Mono 11'
+use-theme-colors=false
+foreground-color='#E8E8F0'
+background-color='#0D0D14'
+palette=['#0D0D14', '#FF4757', '#00E676', '#FF9100', '#00D9FF', '#6B4C9A', '#00D9FF', '#E8E8F0', '#505068', '#FF6B9D', '#00E676', '#FF9100', '#00D9FF', '#8B6CB8', '#00D9FF', '#FFFFFF']
+bold-color='#FFFFFF'
+bold-color-same-as-fg=false
+cursor-colors-set=true
+cursor-foreground-color='#0D0D14'
+cursor-background-color='#00D9FF'
+highlight-colors-set=true
+highlight-foreground-color='#FFFFFF'
+highlight-background-color='#6B4C9A'
+scrollbar-policy='never'
+audible-bell=false
+cursor-shape='ibeam'
+cursor-blink-mode='on'
+
+# =============================================================================
+# GEdit / Text Editor Settings
+# =============================================================================
+
+[org/gnome/TextEditor]
+style-scheme='quantonium-dark'
+show-line-numbers=true
+highlight-current-line=true
+wrap-text='word'
+use-system-font=false
+custom-font='JetBrains Mono 11'
+
+[org/gnome/gedit/preferences/editor]
+scheme='quantonium-dark'
+display-line-numbers=true
+highlight-current-line=true
+wrap-mode='word'
+use-default-font=false
+editor-font='JetBrains Mono 11'
+tabs-size=4
+insert-spaces=true
+auto-indent=true
+
+# =============================================================================
+# Night Light Settings
+# =============================================================================
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+night-light-temperature=uint32 3500
+night-light-schedule-automatic=true

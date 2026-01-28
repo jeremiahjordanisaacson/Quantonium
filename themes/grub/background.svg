@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grubBgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0D0D14"/>
+      <stop offset="50%" stop-color="#1A1A2E"/>
+      <stop offset="100%" stop-color="#0D0D14"/>
+    </linearGradient>
+
+    <radialGradient id="purpleGlow" cx="30%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#6B4C9A" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="cyanGlow" cx="70%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#00D9FF" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="nebulaBlur">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+
+    <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#6B4C9A" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#FF6B9D" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1920" height="1080" fill="url(#grubBgGradient)"/>
+
+  <!-- Nebula effects -->
+  <ellipse cx="600" cy="400" rx="400" ry="300" fill="#6B4C9A" opacity="0.1" filter="url(#nebulaBlur)"/>
+  <ellipse cx="1400" cy="700" rx="350" ry="250" fill="#00D9FF" opacity="0.06" filter="url(#nebulaBlur)"/>
+
+  <!-- Gradient overlays -->
+  <rect width="1920" height="1080" fill="url(#purpleGlow)"/>
+  <rect width="1920" height="1080" fill="url(#cyanGlow)"/>
+
+  <!-- Subtle orbital lines -->
+  <ellipse cx="960" cy="540" rx="800" ry="200" fill="none" stroke="url(#orbitalGradient)" stroke-width="1" opacity="0.15" transform="rotate(-10 960 540)"/>
+  <ellipse cx="960" cy="540" rx="900" ry="220" fill="none" stroke="url(#orbitalGradient)" stroke-width="0.5" opacity="0.08" transform="rotate(8 960 540)"/>
+
+  <!-- Star field -->
+  <g fill="#FFFFFF">
+    <circle cx="100" cy="80" r="1" opacity="0.3"/>
+    <circle cx="300" cy="150" r="0.8" opacity="0.25"/>
+    <circle cx="500" cy="100" r="1.2" opacity="0.35"/>
+    <circle cx="700" cy="200" r="0.6" opacity="0.2"/>
+    <circle cx="900" cy="120" r="1" opacity="0.3"/>
+    <circle cx="1100" cy="80" r="0.8" opacity="0.25"/>
+    <circle cx="1300" cy="180" r="1.1" opacity="0.35"/>
+    <circle cx="1500" cy="100" r="0.7" opacity="0.2"/>
+    <circle cx="1700" cy="150" r="1" opacity="0.3"/>
+    <circle cx="1850" cy="80" r="0.9" opacity="0.25"/>
+
+    <circle cx="150" cy="400" r="0.8" opacity="0.25"/>
+    <circle cx="350" cy="500" r="1" opacity="0.3"/>
+    <circle cx="550" cy="450" r="0.9" opacity="0.25"/>
+    <circle cx="1350" cy="480" r="1.2" opacity="0.35"/>
+    <circle cx="1550" cy="420" r="0.7" opacity="0.2"/>
+    <circle cx="1750" cy="500" r="1" opacity="0.3"/>
+
+    <circle cx="200" cy="800" r="1" opacity="0.3"/>
+    <circle cx="400" cy="900" r="0.8" opacity="0.25"/>
+    <circle cx="600" cy="850" r="1.1" opacity="0.35"/>
+    <circle cx="800" cy="950" r="0.6" opacity="0.2"/>
+    <circle cx="1000" cy="880" r="1" opacity="0.3"/>
+    <circle cx="1200" cy="820" r="0.9" opacity="0.25"/>
+    <circle cx="1400" cy="920" r="1.2" opacity="0.35"/>
+    <circle cx="1600" cy="860" r="0.7" opacity="0.2"/>
+    <circle cx="1800" cy="950" r="1" opacity="0.3"/>
+  </g>
+
+  <!-- Accent stars with glow -->
+  <g>
+    <circle cx="250" cy="250" r="1.5" fill="#00D9FF" opacity="0.6"/>
+    <circle cx="1650" cy="300" r="2" fill="#FF6B9D" opacity="0.5"/>
+    <circle cx="450" cy="750" r="1.8" fill="#6B4C9A" opacity="0.6"/>
+    <circle cx="1500" cy="800" r="1.5" fill="#00D9FF" opacity="0.5"/>
+  </g>
+
+  <!-- Vignette -->
+  <defs>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+</svg>

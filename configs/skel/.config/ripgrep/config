@@ -1,0 +1,61 @@
+# Ripgrep Configuration
+# ~/.config/ripgrep/config
+
+# Smart case (case-insensitive unless pattern has uppercase)
+--smart-case
+
+# Show line numbers
+--line-number
+
+# Show column numbers
+--column
+
+# Add blank line between file matches
+--heading
+
+# Use colors
+--color=auto
+
+# Highlight matches
+--colors=match:fg:cyan
+--colors=match:style:bold
+--colors=line:fg:yellow
+--colors=path:fg:magenta
+--colors=path:style:bold
+
+# Follow symlinks
+--follow
+
+# Search hidden files (but respect .gitignore)
+--hidden
+
+# Ignore common non-code directories
+--glob=!.git/
+--glob=!node_modules/
+--glob=!vendor/
+--glob=!.venv/
+--glob=!venv/
+--glob=!__pycache__/
+--glob=!*.pyc
+--glob=!.cache/
+--glob=!.npm/
+--glob=!dist/
+--glob=!build/
+--glob=!target/
+--glob=!coverage/
+--glob=!.coverage/
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!package-lock.json
+--glob=!yarn.lock
+--glob=!pnpm-lock.yaml
+--glob=!Cargo.lock
+--glob=!*.map
+
+# Max columns (truncate long lines)
+--max-columns=200
+--max-columns-preview
+
+# Context lines (show some context around matches)
+# Uncomment if you prefer context by default
+# --context=2

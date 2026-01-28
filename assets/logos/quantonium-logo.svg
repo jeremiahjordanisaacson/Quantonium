@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Primary Gradient -->
+    <linearGradient id="quantumGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+
+    <!-- Orbital Gradient -->
+    <linearGradient id="orbitalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D9FF"/>
+      <stop offset="50%" stop-color="#6B4C9A"/>
+      <stop offset="100%" stop-color="#FF6B9D"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Core Glow -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D9FF" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#6B4C9A" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#6B4C9A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background Circle (optional, for use on light backgrounds) -->
+  <!-- <circle cx="256" cy="256" r="240" fill="#1A1A2E"/> -->
+
+  <!-- Outer Glow Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#coreGlow)" stroke-width="60" opacity="0.3"/>
+
+  <!-- Main Q Circle -->
+  <circle cx="256" cy="256" r="140" fill="none" stroke="url(#quantumGlow)" stroke-width="36" stroke-linecap="round"/>
+
+  <!-- Orbital Ring 1 - Tilted ellipse -->
+  <ellipse cx="256" cy="256" rx="190" ry="70" fill="none" stroke="url(#orbitalGradient)" stroke-width="8" stroke-linecap="round" transform="rotate(-30 256 256)" filter="url(#glow)" opacity="0.9"/>
+
+  <!-- Orbital Ring 2 - Counter tilt -->
+  <ellipse cx="256" cy="256" rx="170" ry="55" fill="none" stroke="url(#orbitalGradient)" stroke-width="5" stroke-linecap="round" transform="rotate(45 256 256)" opacity="0.6"/>
+
+  <!-- Core/Nucleus -->
+  <circle cx="256" cy="256" r="45" fill="url(#quantumGlow)"/>
+  <circle cx="256" cy="256" r="25" fill="#00D9FF" opacity="0.8"/>
+  <circle cx="256" cy="256" r="12" fill="#FFFFFF"/>
+
+  <!-- Q Tail -->
+  <path d="M340 340 L420 420" stroke="url(#quantumGlow)" stroke-width="36" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- Electron Particles -->
+  <circle cx="380" cy="140" r="12" fill="#00D9FF" filter="url(#glow)"/>
+  <circle cx="130" cy="300" r="10" fill="#FF6B9D" filter="url(#glow)"/>
+  <circle cx="400" cy="320" r="8" fill="#00D9FF" opacity="0.7"/>
+</svg>

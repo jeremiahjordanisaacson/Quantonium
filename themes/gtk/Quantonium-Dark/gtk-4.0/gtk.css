@@ -1,0 +1,982 @@
+/*
+ * Quantonium Dark Theme - GTK4/libadwaita
+ * A modern, elegant dark theme with quantum-inspired accents
+ *
+ * Color Palette:
+ * - Quantum Purple: #6B4C9A (primary)
+ * - Deep Space: #1A1A2E (background)
+ * - Void Black: #0D0D14 (darker bg)
+ * - Nebula Cyan: #00D9FF (accent)
+ * - Cosmic Pink: #FF6B9D (secondary accent)
+ * - Starlight: #E8E8F0 (text)
+ */
+
+/* =============================================================================
+ * Color Definitions
+ * ============================================================================= */
+
+@define-color accent_bg_color #6B4C9A;
+@define-color accent_fg_color #FFFFFF;
+@define-color accent_color #00D9FF;
+
+@define-color destructive_bg_color #FF4757;
+@define-color destructive_fg_color #FFFFFF;
+@define-color destructive_color #FF4757;
+
+@define-color success_bg_color #00E676;
+@define-color success_fg_color #0D0D14;
+@define-color success_color #00E676;
+
+@define-color warning_bg_color #FF9100;
+@define-color warning_fg_color #0D0D14;
+@define-color warning_color #FF9100;
+
+@define-color error_bg_color #FF4757;
+@define-color error_fg_color #FFFFFF;
+@define-color error_color #FF4757;
+
+@define-color window_bg_color #1A1A2E;
+@define-color window_fg_color #E8E8F0;
+
+@define-color view_bg_color #16161F;
+@define-color view_fg_color #E8E8F0;
+
+@define-color headerbar_bg_color #0D0D14;
+@define-color headerbar_fg_color #E8E8F0;
+@define-color headerbar_border_color rgba(255, 255, 255, 0.08);
+@define-color headerbar_backdrop_color #0D0D14;
+@define-color headerbar_shade_color rgba(0, 0, 0, 0.5);
+
+@define-color sidebar_bg_color #16161F;
+@define-color sidebar_fg_color #E8E8F0;
+@define-color sidebar_backdrop_color #16161F;
+@define-color sidebar_shade_color rgba(0, 0, 0, 0.3);
+
+@define-color secondary_sidebar_bg_color #1A1A2E;
+@define-color secondary_sidebar_fg_color #E8E8F0;
+@define-color secondary_sidebar_backdrop_color #1A1A2E;
+@define-color secondary_sidebar_shade_color rgba(0, 0, 0, 0.3);
+
+@define-color card_bg_color #252538;
+@define-color card_fg_color #E8E8F0;
+@define-color card_shade_color rgba(0, 0, 0, 0.3);
+
+@define-color dialog_bg_color #1A1A2E;
+@define-color dialog_fg_color #E8E8F0;
+
+@define-color popover_bg_color #252538;
+@define-color popover_fg_color #E8E8F0;
+@define-color popover_shade_color rgba(0, 0, 0, 0.4);
+
+@define-color thumbnail_bg_color #16161F;
+@define-color thumbnail_fg_color #E8E8F0;
+
+@define-color shade_color rgba(0, 0, 0, 0.5);
+@define-color scrollbar_outline_color rgba(0, 0, 0, 0.3);
+
+@define-color borders rgba(255, 255, 255, 0.08);
+@define-color border_color rgba(255, 255, 255, 0.08);
+
+/* Quantonium Custom Colors */
+@define-color quantum_purple #6B4C9A;
+@define-color quantum_purple_light #8B6CB8;
+@define-color deep_space #1A1A2E;
+@define-color void_black #0D0D14;
+@define-color nebula_cyan #00D9FF;
+@define-color cosmic_pink #FF6B9D;
+@define-color starlight #E8E8F0;
+@define-color cosmic_gray_600 #505068;
+@define-color cosmic_gray_700 #383850;
+@define-color cosmic_gray_800 #252538;
+
+/* =============================================================================
+ * Global Styles
+ * ============================================================================= */
+
+* {
+    outline-color: alpha(@nebula_cyan, 0.5);
+    outline-style: solid;
+    outline-offset: -3px;
+    outline-width: 2px;
+    -gtk-outline-radius: 8px;
+}
+
+/* =============================================================================
+ * Window
+ * ============================================================================= */
+
+window {
+    background-color: @window_bg_color;
+    color: @window_fg_color;
+}
+
+window.background {
+    background-color: @window_bg_color;
+}
+
+window.csd {
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+window.tiled,
+window.tiled-left,
+window.tiled-right,
+window.tiled-top,
+window.tiled-bottom,
+window.maximized,
+window.fullscreen {
+    border-radius: 0;
+}
+
+/* =============================================================================
+ * Header Bar
+ * ============================================================================= */
+
+headerbar {
+    background: linear-gradient(180deg,
+        alpha(@quantum_purple, 0.15) 0%,
+        @headerbar_bg_color 100%);
+    border-bottom: 1px solid @headerbar_border_color;
+    padding: 6px;
+    min-height: 42px;
+}
+
+headerbar:backdrop {
+    background: @headerbar_backdrop_color;
+}
+
+headerbar .title {
+    font-weight: 600;
+    color: @headerbar_fg_color;
+}
+
+headerbar .subtitle {
+    font-size: 0.9em;
+    color: alpha(@headerbar_fg_color, 0.7);
+}
+
+/* Window Controls */
+windowcontrols {
+    margin: 0 4px;
+}
+
+windowcontrols button {
+    min-width: 14px;
+    min-height: 14px;
+    padding: 0;
+    margin: 0 2px;
+    border-radius: 50%;
+    background: @cosmic_gray_700;
+    border: 1px solid alpha(white, 0.1);
+}
+
+windowcontrols button:hover {
+    background: @cosmic_gray_600;
+}
+
+windowcontrols button.close {
+    background: @destructive_bg_color;
+}
+
+windowcontrols button.close:hover {
+    background: shade(@destructive_bg_color, 1.1);
+}
+
+windowcontrols button.minimize {
+    background: @warning_bg_color;
+}
+
+windowcontrols button.minimize:hover {
+    background: shade(@warning_bg_color, 1.1);
+}
+
+windowcontrols button.maximize {
+    background: @success_bg_color;
+}
+
+windowcontrols button.maximize:hover {
+    background: shade(@success_bg_color, 1.1);
+}
+
+/* =============================================================================
+ * Buttons
+ * ============================================================================= */
+
+button {
+    background: @cosmic_gray_700;
+    border: 1px solid @borders;
+    border-radius: 8px;
+    padding: 8px 16px;
+    min-height: 24px;
+    color: @window_fg_color;
+    font-weight: 500;
+    transition: all 200ms ease;
+}
+
+button:hover {
+    background: @cosmic_gray_600;
+    border-color: alpha(@nebula_cyan, 0.3);
+}
+
+button:active {
+    background: @cosmic_gray_800;
+}
+
+button:checked {
+    background: @quantum_purple;
+    color: white;
+    border-color: @quantum_purple_light;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+button.suggested-action {
+    background: linear-gradient(135deg, @quantum_purple 0%, @nebula_cyan 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+button.suggested-action:hover {
+    background: linear-gradient(135deg, @quantum_purple_light 0%, shade(@nebula_cyan, 1.1) 100%);
+    box-shadow: 0 4px 16px alpha(@quantum_purple, 0.4);
+}
+
+button.destructive-action {
+    background: @destructive_bg_color;
+    color: white;
+    border: none;
+}
+
+button.destructive-action:hover {
+    background: shade(@destructive_bg_color, 1.1);
+}
+
+button.flat {
+    background: transparent;
+    border: none;
+}
+
+button.flat:hover {
+    background: alpha(@nebula_cyan, 0.1);
+}
+
+button.circular {
+    border-radius: 50%;
+    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
+}
+
+button.pill {
+    border-radius: 9999px;
+    padding: 8px 20px;
+}
+
+/* =============================================================================
+ * Entries (Text Inputs)
+ * ============================================================================= */
+
+entry {
+    background: @view_bg_color;
+    border: 1px solid @borders;
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-height: 20px;
+    caret-color: @nebula_cyan;
+    transition: all 200ms ease;
+}
+
+entry:focus {
+    border-color: @nebula_cyan;
+    box-shadow: 0 0 0 3px alpha(@nebula_cyan, 0.2);
+}
+
+entry:disabled {
+    opacity: 0.5;
+}
+
+entry image {
+    color: @cosmic_gray_600;
+}
+
+entry image:hover {
+    color: @nebula_cyan;
+}
+
+/* =============================================================================
+ * Search Entry
+ * ============================================================================= */
+
+searchentry {
+    background: alpha(@view_bg_color, 0.8);
+    border-radius: 9999px;
+}
+
+searchentry:focus {
+    background: @view_bg_color;
+}
+
+/* =============================================================================
+ * Dropdown / ComboBox
+ * ============================================================================= */
+
+dropdown,
+combobox {
+    background: @cosmic_gray_700;
+    border: 1px solid @borders;
+    border-radius: 8px;
+}
+
+dropdown:hover,
+combobox:hover {
+    border-color: alpha(@nebula_cyan, 0.3);
+}
+
+dropdown button,
+combobox button {
+    background: transparent;
+    border: none;
+}
+
+/* =============================================================================
+ * Switches
+ * ============================================================================= */
+
+switch {
+    background: @cosmic_gray_700;
+    border-radius: 9999px;
+    min-width: 48px;
+    min-height: 26px;
+    border: 1px solid @borders;
+    transition: all 200ms ease;
+}
+
+switch:checked {
+    background: linear-gradient(135deg, @quantum_purple 0%, @nebula_cyan 100%);
+    border-color: transparent;
+}
+
+switch slider {
+    background: white;
+    border-radius: 50%;
+    min-width: 22px;
+    min-height: 22px;
+    margin: 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* =============================================================================
+ * Check Buttons & Radio Buttons
+ * ============================================================================= */
+
+checkbutton check,
+radiobutton radio {
+    background: @cosmic_gray_700;
+    border: 2px solid @cosmic_gray_600;
+    min-width: 20px;
+    min-height: 20px;
+    transition: all 200ms ease;
+}
+
+checkbutton check {
+    border-radius: 6px;
+}
+
+radiobutton radio {
+    border-radius: 50%;
+}
+
+checkbutton check:checked,
+radiobutton radio:checked {
+    background: @quantum_purple;
+    border-color: @quantum_purple;
+    color: white;
+}
+
+checkbutton check:checked {
+    -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
+}
+
+/* =============================================================================
+ * Progress Bar
+ * ============================================================================= */
+
+progressbar trough {
+    background: @cosmic_gray_800;
+    border-radius: 9999px;
+    min-height: 8px;
+}
+
+progressbar progress {
+    background: linear-gradient(90deg, @quantum_purple 0%, @nebula_cyan 100%);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px alpha(@nebula_cyan, 0.4);
+}
+
+progressbar.osd {
+    background: transparent;
+}
+
+/* =============================================================================
+ * Scale (Slider)
+ * ============================================================================= */
+
+scale trough {
+    background: @cosmic_gray_800;
+    border-radius: 9999px;
+    min-height: 6px;
+    min-width: 6px;
+}
+
+scale highlight {
+    background: linear-gradient(90deg, @quantum_purple 0%, @nebula_cyan 100%);
+    border-radius: 9999px;
+}
+
+scale slider {
+    background: white;
+    border-radius: 50%;
+    min-width: 18px;
+    min-height: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    transition: all 200ms ease;
+}
+
+scale slider:hover {
+    transform: scale(1.1);
+}
+
+scale.marks-before:not(.marks-after) slider,
+scale.marks-after:not(.marks-before) slider {
+    border-radius: 50%;
+}
+
+/* =============================================================================
+ * Scrollbar
+ * ============================================================================= */
+
+scrollbar {
+    background: transparent;
+}
+
+scrollbar slider {
+    background: alpha(@starlight, 0.3);
+    border-radius: 9999px;
+    min-width: 8px;
+    min-height: 8px;
+    border: 2px solid transparent;
+}
+
+scrollbar slider:hover {
+    background: alpha(@nebula_cyan, 0.5);
+}
+
+scrollbar slider:active {
+    background: @nebula_cyan;
+}
+
+scrollbar.horizontal slider {
+    min-height: 8px;
+}
+
+scrollbar.vertical slider {
+    min-width: 8px;
+}
+
+/* =============================================================================
+ * Lists and Rows
+ * ============================================================================= */
+
+list,
+listview {
+    background: transparent;
+}
+
+list row,
+listview row {
+    background: transparent;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 2px 4px;
+    transition: all 150ms ease;
+}
+
+list row:hover,
+listview row:hover {
+    background: alpha(@nebula_cyan, 0.08);
+}
+
+list row:selected,
+listview row:selected {
+    background: alpha(@quantum_purple, 0.3);
+    color: @starlight;
+}
+
+list row:selected:hover,
+listview row:selected:hover {
+    background: alpha(@quantum_purple, 0.4);
+}
+
+/* Preferences Groups */
+preferencesgroup {
+    margin: 12px;
+}
+
+preferencesgroup > box > label {
+    font-weight: 700;
+    font-size: 0.9em;
+    color: alpha(@starlight, 0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+/* Action Rows */
+row.activatable {
+    background: @card_bg_color;
+    border-radius: 12px;
+    margin: 4px 0;
+}
+
+row.activatable:hover {
+    background: shade(@card_bg_color, 1.1);
+}
+
+/* =============================================================================
+ * Cards
+ * ============================================================================= */
+
+.card {
+    background: @card_bg_color;
+    border-radius: 16px;
+    border: 1px solid @borders;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    padding: 16px;
+}
+
+/* =============================================================================
+ * Popovers and Menus
+ * ============================================================================= */
+
+popover {
+    background: @popover_bg_color;
+    border-radius: 12px;
+    border: 1px solid @borders;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+popover > arrow {
+    background: @popover_bg_color;
+}
+
+popover > contents {
+    padding: 8px;
+    border-radius: 12px;
+}
+
+popover modelbutton,
+popover .model {
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-height: 28px;
+}
+
+popover modelbutton:hover,
+popover .model:hover {
+    background: alpha(@nebula_cyan, 0.15);
+}
+
+/* Menu */
+menu {
+    background: @popover_bg_color;
+    border-radius: 12px;
+    padding: 8px;
+    border: 1px solid @borders;
+}
+
+menuitem {
+    padding: 8px 12px;
+    border-radius: 8px;
+    min-height: 24px;
+}
+
+menuitem:hover {
+    background: alpha(@nebula_cyan, 0.15);
+}
+
+menuitem accelerator {
+    color: alpha(@starlight, 0.5);
+}
+
+/* =============================================================================
+ * Dialogs
+ * ============================================================================= */
+
+messagedialog {
+    background: @dialog_bg_color;
+}
+
+messagedialog .titlebar {
+    background: transparent;
+    border: none;
+}
+
+messagedialog .dialog-action-area button {
+    margin: 8px;
+}
+
+/* =============================================================================
+ * Sidebar / Navigation
+ * ============================================================================= */
+
+.navigation-sidebar {
+    background: @sidebar_bg_color;
+    border-right: 1px solid @borders;
+    padding: 8px;
+}
+
+.navigation-sidebar row {
+    border-radius: 8px;
+    margin: 2px 4px;
+    padding: 10px 12px;
+}
+
+.navigation-sidebar row:selected {
+    background: alpha(@quantum_purple, 0.4);
+}
+
+.navigation-sidebar row:hover:not(:selected) {
+    background: alpha(@nebula_cyan, 0.1);
+}
+
+/* =============================================================================
+ * Tabs
+ * ============================================================================= */
+
+tabbar tabbox {
+    background: @headerbar_bg_color;
+}
+
+tabbar tab {
+    background: transparent;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 16px;
+    margin: 4px 2px 0 2px;
+    border: 1px solid transparent;
+    border-bottom: none;
+}
+
+tabbar tab:hover {
+    background: alpha(@nebula_cyan, 0.1);
+}
+
+tabbar tab:selected {
+    background: @window_bg_color;
+    border-color: @borders;
+}
+
+/* =============================================================================
+ * Notebook (Tabs Container)
+ * ============================================================================= */
+
+notebook {
+    background: @window_bg_color;
+}
+
+notebook header {
+    background: @headerbar_bg_color;
+    border-bottom: 1px solid @borders;
+}
+
+notebook tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+notebook tab:checked {
+    background: @quantum_purple;
+    color: white;
+}
+
+notebook tab:hover:not(:checked) {
+    background: alpha(@nebula_cyan, 0.1);
+}
+
+/* =============================================================================
+ * Stack Switcher
+ * ============================================================================= */
+
+stackswitcher {
+    padding: 4px;
+    background: @cosmic_gray_800;
+    border-radius: 10px;
+}
+
+stackswitcher button {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin: 2px;
+}
+
+stackswitcher button:checked {
+    background: @quantum_purple;
+    color: white;
+}
+
+stackswitcher button:hover:not(:checked) {
+    background: alpha(@nebula_cyan, 0.15);
+}
+
+/* =============================================================================
+ * View Switcher (libadwaita)
+ * ============================================================================= */
+
+viewswitcher {
+    margin: 0;
+}
+
+viewswitcher button {
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 16px;
+    margin: 4px 2px;
+}
+
+viewswitcher button:checked {
+    background: alpha(@quantum_purple, 0.3);
+}
+
+viewswitcher button:hover:not(:checked) {
+    background: alpha(@nebula_cyan, 0.1);
+}
+
+viewswitcherbar actionbar {
+    background: @headerbar_bg_color;
+    border-top: 1px solid @borders;
+}
+
+/* =============================================================================
+ * Info Bars
+ * ============================================================================= */
+
+infobar {
+    border-radius: 8px;
+    padding: 8px;
+    border: none;
+}
+
+infobar.info {
+    background: alpha(@nebula_cyan, 0.2);
+    color: @nebula_cyan;
+}
+
+infobar.warning {
+    background: alpha(@warning_color, 0.2);
+    color: @warning_color;
+}
+
+infobar.error {
+    background: alpha(@error_color, 0.2);
+    color: @error_color;
+}
+
+infobar.success {
+    background: alpha(@success_color, 0.2);
+    color: @success_color;
+}
+
+/* =============================================================================
+ * Tooltips
+ * ============================================================================= */
+
+tooltip {
+    background: @void_black;
+    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid @borders;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+tooltip label {
+    color: @starlight;
+}
+
+/* =============================================================================
+ * Calendar
+ * ============================================================================= */
+
+calendar {
+    background: @view_bg_color;
+    border-radius: 12px;
+    padding: 8px;
+}
+
+calendar header {
+    font-weight: 600;
+}
+
+calendar:selected {
+    background: @quantum_purple;
+    color: white;
+    border-radius: 8px;
+}
+
+/* =============================================================================
+ * Spinner
+ * ============================================================================= */
+
+spinner {
+    color: @nebula_cyan;
+}
+
+/* =============================================================================
+ * Level Bar
+ * ============================================================================= */
+
+levelbar trough {
+    background: @cosmic_gray_800;
+    border-radius: 4px;
+}
+
+levelbar block {
+    border-radius: 4px;
+}
+
+levelbar block.filled {
+    background: @quantum_purple;
+}
+
+levelbar block.low {
+    background: @warning_color;
+}
+
+levelbar block.high {
+    background: @success_color;
+}
+
+levelbar block.full {
+    background: @nebula_cyan;
+}
+
+/* =============================================================================
+ * Expander
+ * ============================================================================= */
+
+expander {
+    padding: 8px;
+}
+
+expander title {
+    font-weight: 600;
+}
+
+expander arrow {
+    color: @nebula_cyan;
+}
+
+/* =============================================================================
+ * Paned (Split View)
+ * ============================================================================= */
+
+paned > separator {
+    background: @borders;
+    min-width: 1px;
+    min-height: 1px;
+}
+
+paned > separator:hover {
+    background: @nebula_cyan;
+}
+
+/* =============================================================================
+ * Selection Mode
+ * ============================================================================= */
+
+.selection-mode {
+    background: linear-gradient(135deg, @quantum_purple 0%, alpha(@nebula_cyan, 0.5) 100%);
+}
+
+.selection-mode headerbar {
+    background: transparent;
+}
+
+/* =============================================================================
+ * App-Specific Styling
+ * ============================================================================= */
+
+/* File Manager (Nautilus) */
+.nautilus-window .sidebar {
+    background: @sidebar_bg_color;
+}
+
+.nautilus-window placessidebar row {
+    border-radius: 8px;
+    margin: 2px 4px;
+}
+
+/* Terminal */
+.terminal-window {
+    background: @void_black;
+}
+
+vte-terminal {
+    padding: 8px;
+}
+
+/* Settings */
+.settings-window .navigation-sidebar {
+    background: @sidebar_bg_color;
+}
+
+/* =============================================================================
+ * Animations
+ * ============================================================================= */
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* =============================================================================
+ * Special Effects
+ * ============================================================================= */
+
+/* Focus glow effect for inputs */
+entry:focus,
+spinbutton:focus,
+dropdown:focus,
+combobox:focus {
+    box-shadow: 0 0 0 3px alpha(@nebula_cyan, 0.3),
+                inset 0 0 0 1px @nebula_cyan;
+}
+
+/* Hover glow for suggested action buttons */
+button.suggested-action:hover {
+    box-shadow: 0 4px 20px alpha(@quantum_purple, 0.5),
+                0 0 40px alpha(@nebula_cyan, 0.2);
+}
+
+/* Active state press effect */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Smooth transitions everywhere */
+*:not(googlecheckmark):not(googlecheckbutton) {
+    transition-property: background, color, border, box-shadow, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+}

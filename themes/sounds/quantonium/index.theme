@@ -1,0 +1,8 @@
+[Sound Theme]
+Name=Quantonium
+Comment=Modern sound theme for Quantonium OS
+Inherits=freedesktop
+Directories=stereo
+
+[stereo]
+OutputProfile=stereo
