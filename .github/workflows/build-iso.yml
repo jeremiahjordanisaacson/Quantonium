@@ -1,0 +1,94 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+          df -h
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            debootstrap \
+            squashfs-tools \
+            xorriso \
+            grub-pc-bin \
+            grub-efi-amd64-bin \
+            grub-efi-amd64-signed \
+            shim-signed \
+            mtools \
+            dosfstools \
+            isolinux \
+            syslinux-utils \
+            rsync \
+            wget \
+            curl
+
+      - name: Build ISO
+        run: |
+          sudo chmod +x build-system/build.sh
+          sudo ./build-system/build.sh
+
+      - name: Generate checksums
+        run: |
+          cd build-system/output
+          sha256sum *.iso > SHA256SUMS
+          md5sum *.iso > MD5SUMS
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: quantonium-iso
+          path: |
+            build-system/output/*.iso
+            build-system/output/SHA256SUMS
+            build-system/output/MD5SUMS
+          retention-days: 7
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build-system/output/*.iso
+            build-system/output/SHA256SUMS
+            build-system/output/MD5SUMS
+          body: |
+            ## Quantonium ${{ github.ref_name }}
+
+            A developer-focused Linux distribution based on Ubuntu 24.04 LTS.
+
+            ### What's Included
+            - Modern CLI tools: ripgrep, fd, fzf, bat, zoxide, delta, jq
+            - Containers: Docker, Podman, kubectl
+            - Languages: Python, Node.js, Go, Rust, C/C++
+            - System tuning for developer workloads
+
+            ### Installation
+            1. Download the ISO
+            2. Write to USB: `sudo dd if=quantonium-*.iso of=/dev/sdX bs=4M status=progress conv=fsync`
+            3. Boot from USB
+            4. Follow installer
+
+            ### Checksums
+            See SHA256SUMS and MD5SUMS files.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
