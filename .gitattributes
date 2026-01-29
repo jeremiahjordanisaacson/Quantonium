@@ -1,0 +1,20 @@
+# Force LF line endings for shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Force LF for config files that might be used on Linux
+*.conf text eol=lf
+*.list text eol=lf
+
+# Tools
+tools/bin/* text eol=lf
+
+# Keep these as auto
+*.md text
+*.yml text
+*.yaml text
+*.css text
+*.html text
+*.svg text
+*.py text
+*.desktop text

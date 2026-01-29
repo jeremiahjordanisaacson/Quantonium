@@ -45,7 +45,10 @@ jobs:
       - name: Build ISO
         run: |
           sudo chmod +x build-system/build.sh
-          sudo ./build-system/build.sh
+          # Convert to Unix line endings if needed
+          sudo sed -i 's/\r$//' build-system/build.sh
+          sudo sed -i 's/\r$//' build-system/packages/desktop.list
+          sudo bash build-system/build.sh
 
       - name: Generate checksums
         run: |
