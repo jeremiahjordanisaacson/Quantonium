@@ -59,30 +59,23 @@ jobs:
             find build-system/build -name "*.log" -exec tail -100 {} \; 2>/dev/null || true
           }
 
-      - name: Generate checksums
+      - name: List output
         run: |
-          cd build-system/output
-          sha256sum *.iso > SHA256SUMS
-          md5sum *.iso > MD5SUMS
+          echo "Build output:"
+          ls -la build-system/output/
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
         with:
           name: quantonium-iso
-          path: |
-            build-system/output/*.iso
-            build-system/output/SHA256SUMS
-            build-system/output/MD5SUMS
+          path: build-system/output/*
           retention-days: 7
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            build-system/output/*.iso
-            build-system/output/SHA256SUMS
-            build-system/output/MD5SUMS
+          files: build-system/output/*
           body: |
             ## Quantonium ${{ github.ref_name }}
 
