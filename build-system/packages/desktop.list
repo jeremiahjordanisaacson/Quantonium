@@ -281,7 +281,6 @@ software-properties-common
 # =============================================================================
 
 casper
-lupin-casper
 ubiquity
 ubiquity-frontend-gtk
 os-prober

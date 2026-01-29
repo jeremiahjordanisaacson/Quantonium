@@ -57,7 +57,16 @@ jobs:
           # Check script is valid
           bash -n build-system/build.sh
           # Run with verbose output - fail if build fails
-          sudo bash -x build-system/build.sh 2>&1
+          sudo bash -x build-system/build.sh 2>&1 || {
+            echo "=== BUILD FAILED ==="
+            echo "Checking build directories..."
+            ls -la build-system/ || true
+            ls -la build-system/build/ || true
+            ls -la build-system/build/chroot/ 2>/dev/null || echo "chroot dir does not exist"
+            ls -la build-system/output/ 2>/dev/null || echo "output dir does not exist"
+            echo "=== END DEBUG ==="
+            exit 1
+          }
           # Verify output was created
           ls -la build-system/output/
           test -f build-system/output/*.iso

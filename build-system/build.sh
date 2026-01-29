@@ -82,7 +82,6 @@ apt-get install -y --no-install-recommends \
     sudo \
     locales \
     casper \
-    lupin-casper \
     grub-pc-bin \
     grub-efi-amd64-bin \
     grub-efi-amd64-signed
