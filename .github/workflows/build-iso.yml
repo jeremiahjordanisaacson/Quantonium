@@ -47,7 +47,7 @@ jobs:
 
       - name: Build ISO
         run: |
-          set -x
+          set -ex
           sudo chmod +x build-system/build.sh
           # Convert to Unix line endings if needed
           sudo sed -i 's/\r$//' build-system/build.sh
@@ -56,11 +56,11 @@ jobs:
           sudo sed -i 's/\r$//' tools/bin/qdev
           # Check script is valid
           bash -n build-system/build.sh
-          # Run with verbose output
-          sudo bash -x build-system/build.sh 2>&1 || {
-            echo "Build failed, showing last 100 lines of any logs..."
-            find build-system/build -name "*.log" -exec tail -100 {} \; 2>/dev/null || true
-          }
+          # Run with verbose output - fail if build fails
+          sudo bash -x build-system/build.sh 2>&1
+          # Verify output was created
+          ls -la build-system/output/
+          test -f build-system/output/*.iso
 
       - name: List output
         run: |
